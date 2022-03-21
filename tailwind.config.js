@@ -6,6 +6,9 @@ module.exports = {
             "kakampink-fg": "#be1f77",
             "kakampink-fg2": "bE558f"
         },
+        fontFamily: {
+            sans: ['Montserrat', 'Verdana', 'sans-serif']
+        },
         extend: {
             spacing: {
                 "128": "32rem"

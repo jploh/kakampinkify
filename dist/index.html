@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Kakampink-ify</title>
     <script type="text/javascript" src="js/app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link href="app.css" rel="stylesheet">
 </head>
 <body class="bg-kakampink-bg text-kakampink-fg">
 <div class="flex h-screen">
-    <div class="m-auto w-128">
+    <div id="pinkify-form" class="m-auto w-128">
         <div class="text-center text-3xl font-medium">Anong katapat ng pangalan mo?</div>
         <div class="container my-5">
             <div class="mx-14 mb-4">Type mo, 5 letters max:</div>
@@ -20,7 +23,12 @@
                 <input id="nl-5" data-nlidx="5" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="1" />
             </div>
         </div>
-        <div class="w-fit mx-auto"><button class="btn btn-lg btn-wide bg-primary hover:bg-secondary text-primary-content border-none"><span class="font-normal">Find out now!</span></button></div>
+        <div class="w-fit mx-auto"><button id="pinkify-submit" class="btn btn-lg btn-wide bg-primary hover:bg-secondary text-primary-content border-none" disabled="disabled"><span class="font-normal">Find out now!</span></button></div>
+    </div>
+    <div id="pinkify-result" class="hidden m-auto w-128">
+        <canvas id="pinkify-result-stage" height="480" width="480"></canvas>
+        <button id="pinkify-reset" class="btn btn-lg btn-wide">Try another name</button>
+        <button id="pinkify-share" class="btn btn-lg btn-wide">Share</button> 
     </div>
 </div>
 </body>
