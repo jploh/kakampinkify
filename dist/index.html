@@ -1,34 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-kakampink-bg h-full w-full">
 <head>
     <meta charset="UTF-8">
-    <title>Kakampink-ify</title>
+    <title>Names for Leni</title>
     <script type="text/javascript" src="js/app.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link href="app.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/favicon.png" />
+    <meta property="og:url" content="https://www.lenirobredo.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Names for Leni" />
+    <meta property="og:description" content="Ano ba ang Gobyernong Tapat? Paano ba ang Angat Buhay Lahat?" />
+    <meta property="og:image" content="https://lenirobredo.com/assets/hanapbuhay/fb_app.png" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://lenirobredo.com">
+    <meta name="twitter:title" content="Names for Leni" />
+    <meta name="twitter:description" content="Ano ba ang Gobyernong Tapat? Paano ba ang Angat Buhay Lahat?" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 <body class="bg-kakampink-bg text-kakampink-fg">
-<div class="flex h-screen">
-    <div id="pinkify-form" class="m-auto w-128">
-        <div class="text-center text-3xl font-medium">Anong katapat ng pangalan mo?</div>
+<div class="flex flex-col h-screen">
+    <div id="pinkify-form" class="m-auto w-11/12 md:w-128">
+        <div class="text-kakampink-fg4 text-center text-xl md:text-2xl font-medium">Ano ba ang Gobyernong Tapat?</div>
+        <div class="text-kakampink-fg4 text-center text-xl md:text-2xl font-medium mb-4">Paano ba ang Angat Buhay Lahat?</div>
+        <div class="text-kakampink-fg4 text-center text-xl md:text-2xl font-medium">Makikilala yan, gamit ang &lsquo;yong pangalan!</div>
         <div class="container my-5">
             <div class="mx-14 mb-4">Type mo, 5 letters max:</div>
-            <div class="flex flex-row gap-x-4 w-fit mx-auto">
-                <input id="nl-1" data-nlidx="1" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="5" />
-                <input id="nl-2" data-nlidx="2" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="4" />
-                <input id="nl-3" data-nlidx="3" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="3" />
-                <input id="nl-4" data-nlidx="4" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="2" />
-                <input id="nl-5" data-nlidx="5" class="name-letter rounded-lg text-4xl font-bold border-kakampink-fg border-2 w-20 h-20 text-center" type="text" maxlength="1" />
+            <div class="flex flex-row gap-x-4 w-screen md:w-fit -mx-4 md:mx-auto scale-75 md:scale-100">
+                <div id="nl-0" class="bg-white border-4 border-kakampink-accent font-bold h-20 pt-4 rounded-lg text-4xl text-center uppercase w-20 shadow-flat4"></div>
+                <div id="nl-1" class="bg-white border-4 border-kakampink-accent font-bold h-20 pt-4 rounded-lg text-4xl text-center uppercase w-20 shadow-flat4"></div>
+                <div id="nl-2" class="bg-white border-4 border-kakampink-accent font-bold h-20 pt-4 rounded-lg text-4xl text-center uppercase w-20 shadow-flat4"></div>
+                <div id="nl-3" class="bg-white border-4 border-kakampink-accent font-bold h-20 pt-4 rounded-lg text-4xl text-center uppercase w-20 shadow-flat4"></div>
+                <div id="nl-4" class="bg-white border-4 border-kakampink-accent font-bold h-20 pt-4 rounded-lg text-4xl text-center uppercase w-20 shadow-flat4"></div>
             </div>
         </div>
-        <div class="w-fit mx-auto"><button id="pinkify-submit" class="btn btn-lg btn-wide bg-primary hover:bg-secondary text-primary-content border-none" disabled="disabled"><span class="font-normal">Find out now!</span></button></div>
+        <div class="w-fit mx-auto"><button id="pinkify-submit" class="bg-kakampink-fg hover:bg-secondary text-white border-2 rounded-3xl border-kakampink-accent3 text-2xl px-10 py-1 shadow-flat3" disabled="disabled"><span class="font-normal">Find out now!</span></button></div>
     </div>
-    <div id="pinkify-result" class="hidden m-auto w-128">
-        <canvas id="pinkify-result-stage" height="480" width="480"></canvas>
-        <button id="pinkify-reset" class="btn btn-lg btn-wide">Try another name</button>
-        <button id="pinkify-share" class="btn btn-lg btn-wide">Share</button> 
+    <div id="pinkify-kb" class="mb-2">
+        <div class="w-full">
+            <div class="flex flex-row justify-center w-full scale-75 md:scale-100 h-10/12 md:h-fit -my-3 md:my-0">
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="q">Q</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="w">W</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="e">E</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="r">R</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="t">T</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="y">Y</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="u">U</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="i">I</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="o">O</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="p">P</button></div>
+            </div>
+            <div class="flex flex-row justify-center w-full scale-75 md:scale-100 h-10/12 md:h-fit -my-3 md:my-0">
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="a">A</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="s">S</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="d">D</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="f">F</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="g">G</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="h">H</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="j">J</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="k">K</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="l">L</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="9">&Ntilde</button></div>
+            </div>
+            <div class="flex flex-row justify-center w-full scale-75 md:scale-100 h-10/12 md:h-fit -my-3 md:my-0">
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="1">ENTER</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="z">Z</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="x">X</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="c">C</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="v">V</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="b">B</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="n">N</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="m">M</button></div>
+                <div><button class="pinkify-kb-key bg-pink-300 font-semibold h-14 m-0.5 rounded text-primary-content px-4" value="0"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z" /></svg></button></div>
+            </div>
+        </div>
+    </div>
+    <div id="pinkify-result" class="hidden w-screen h-screen">
+        <div class="flex flex-col justify-center h-screen">
+            <canvas id="pinkify-result-stage" height="480" width="480" class="mx-auto w-80 md:w-fit"></canvas>
+            <div class="flex flex-row justify-center my-4 gap-2">
+                <button id="pinkify-reset" class="border-2 rounded-2xl border-kakampink-fg bg-kakampink-bg2 text-kakampink-fg py-0.5 px-2 font-semibold shadow-flat1">Try another name</button>
+                <button id="pinkify-share" class="border-2 rounded-2xl border-lime-400 bg-kakampink-accent2 text-white py-0.5 px-2 font-semibold shadow-flat2">Share</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>
