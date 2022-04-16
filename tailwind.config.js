@@ -14,7 +14,8 @@ module.exports = {
                 "kakampink-fg4": "#e72792",
                 "kakampink-accent": "#b5d7ac",
                 "kakampink-accent2": "#e72792",
-                "kakampink-accent3": "#a4e393"
+                "kakampink-accent3": "#a4e393",
+                "kakampink-accent4": "#58a371"
             },
             boxShadow: {
                 "flat1": "4px 4px 0 #ff8c9d",

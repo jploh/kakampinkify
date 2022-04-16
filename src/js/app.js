@@ -2,7 +2,6 @@
  * @author JP Loh <hello@jploh.com>
  */
 
-//import _ from 'lodash';
 import { brightness } from 'tailwindcss/defaultTheme';
 
 var plataporma = {};
@@ -167,10 +166,7 @@ var imgRender = () => {
     wmBg.addColorStop(0, '#f17495');
     wmBg.addColorStop(1, '#d44384');
     cvctx.fillStyle = wmBg;
-    //cvctx.save();
-    //cvctx.scale(-20, -20);
     cvctx.fill(wmPathScaled);
-    //cvctx.restore();
 
     // Bottom Decorations
     cvctx.fillStyle = 'rgba(255, 255, 255, 1)';
@@ -182,10 +178,10 @@ var imgRender = () => {
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
     cvctx.font = 'bold 28px Montserrat';
     cvctx.fillText('AND I AM FOR LENI.', 240, 385);
-    cvctx.font = '600 italic 11px Montserrat';
+    cvctx.font = '600 italic 12px Montserrat';
     cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 240, 403);
-    cvctx.font = 'small-caps italic expanded 800 12px Montserrat';
-    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, 418);
+    cvctx.font = 'small-caps italic expanded 800 16px Montserrat';
+    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, 420);
     cvctx.fillStyle = 'rgba(231, 38, 146)';
     cvctx.font = 'bold 24px Montserrat';
     cvctx.fillText('10', 240, 453);
