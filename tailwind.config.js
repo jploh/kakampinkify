@@ -29,18 +29,5 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/forms')
-    ],
-    daisyui: {
-        themes: [
-            {
-                kkp: {
-                    primary: "#be1f77",
-                    secondary: "#bE558f",
-                    netural: "#ffe4f3",
-                    whitest: "#ffffff",
-                    "--btn-text-case": "none"
-                }
-            }
-        ]
-    }
-  }
+    ]
+}
