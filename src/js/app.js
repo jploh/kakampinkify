@@ -178,9 +178,9 @@ var imgRender = () => {
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
     cvctx.font = 'bold 28px Montserrat';
     cvctx.fillText('AND I AM FOR LENI.', 240, 385);
-    cvctx.font = '600 italic 12px Montserrat';
+    cvctx.font = '600 13px Montserrat';
     cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 240, 403);
-    cvctx.font = 'small-caps italic expanded 800 16px Montserrat';
+    cvctx.font = 'small-caps expanded 800 18px Montserrat';
     cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, 420);
     cvctx.fillStyle = 'rgba(231, 38, 146)';
     cvctx.font = 'bold 24px Montserrat';
@@ -280,6 +280,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             response.blob().then((blob) => {
                 const shareData = {
                     title: 'Platapormang Tapat',
+                    text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
                     files: [
                         new File([blob], 'angatlahat.png', {
                             type: blob.type,
