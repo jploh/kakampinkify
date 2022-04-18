@@ -282,9 +282,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 window.word += event.key;
             }
             nameRedraw();
-        }/* else {
-            console.log('Ignored keypress');
-        }*/
+        }
     });
 
     const kbKeys = document.querySelectorAll('.pinkify-kb-key');
