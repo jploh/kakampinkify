@@ -5,7 +5,9 @@
 import { brightness } from 'tailwindcss/defaultTheme';
 
 var plataporma = {};
+var bannedWords;
 window.word = '';
+window.safetyCheckFailedTO = false;
 
 var nameRedraw = () => {
     for(let i = 0; i < 5; i++) {
@@ -23,8 +25,43 @@ var nameRedraw = () => {
     }
 };
 
+var safetyCheckFailed = () => {
+    const submit = document.querySelector('#pinkify-submit');
+    submit.innerHTML = 'Try again.'
+    const buzzGroup = document.querySelectorAll('#pinkify-submit, #nl-0, #nl-1, #nl-2, #nl-3, #nl-4');
+    buzzGroup.forEach((el) => {
+        el.classList.add('animate-buzz');
+        el.getAnimations().forEach((anim) => {
+            anim.cancel();
+            anim.play();
+        });
+    });
+    document.querySelector('#nl-0').innerHTML = '';
+    document.querySelector('#nl-1').innerHTML = '';
+    document.querySelector('#nl-2').innerHTML = '';
+    document.querySelector('#nl-3').innerHTML = '';
+    document.querySelector('#nl-4').innerHTML = '';
+    if(window.safetyCheckFailedTO) {
+        clearTimeout(window.safetyCheckFailedTO);
+    }
+    window.safetyCheckFailedTO = window.setTimeout(() => {
+        const submit = document.querySelector('#pinkify-submit');
+        submit.innerHTML = 'Find out now!';
+        const buzzGroup = document.querySelectorAll('#pinkify-submit, #nl-0, #nl-1, #nl-2, #nl-3, #nl-4');
+        buzzGroup.forEach((el) => {
+            el.classList.remove('animate-buzz');
+        });
+    }, 1500);
+};
+
 var imgRender = () => {
     if(window.word.length === 0) {
+        return true;
+    }
+
+    if(bannedWords.includes(window.word)) {
+        window.word = '';
+        safetyCheckFailed();
         return true;
     }
 
@@ -226,6 +263,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('#pinkify-submit').disabled = false;
         });
 
+    fetch('./banned-words.json')
+        .then(response => response.json())
+        .then((data) => {
+            bannedWords = data;
+        });
+    
     document.querySelector('body').addEventListener('keydown', (event) => {
         if(event.key === 'Enter') {
             imgRender();
