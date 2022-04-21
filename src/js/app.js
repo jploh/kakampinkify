@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     document.querySelector('#pinkify-submit').addEventListener('click', (event) => {
-        imgRender();
+        document.fonts.load('italic 600 23px Montserrat').then(imgRender);
         event.preventDefault();
     });
 
