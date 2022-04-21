@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 window.word = window.word.substring(0, window.word.length - 1);
             }
             nameRedraw();
-        } else if(/^[a-z]$/.test(event.key)) {
+        } else if(/^[a-z]$/.test(event.key.toLowerCase())) {
             if(window.word.length < 5) {
                 window.word += event.key;
             }
