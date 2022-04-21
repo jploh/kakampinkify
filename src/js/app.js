@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     document.querySelector('body').addEventListener('keydown', (event) => {
         if(event.key === 'Enter') {
-            imgRender();
+            document.fonts.load('italic 600 23px Montserrat').then(imgRender);
         } else if(event.key === 'Backspace') {
             if(window.word.length > 0) {
                 window.word = window.word.substring(0, window.word.length - 1);
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 }
                 nameRedraw();
             } else if(event.target.value === '1') { // Enter
-                imgRender();
+                document.fonts.load('italic 600 23px Montserrat').then(imgRender);
             } else if(event.target.value === '9') { // N with tilde
                 if(window.word.length < 5) {
                     window.word += 'ñ';
