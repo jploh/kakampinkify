@@ -70,7 +70,7 @@ var imgRender = () => {
     document.querySelector('#pinkify-result').classList.remove('hidden');
 
     const l1x = 100; // First line X
-    const l1y = 105; // First line Y
+    const l1y = 105 + ((5 - window.word.length) * 23); // First line Y
     const l1fb = 2; // First letter baseline offset
     const l1s = 2; // First letter shadow distance
     const l1p = 18; // First letter right padding
@@ -206,22 +206,27 @@ var imgRender = () => {
     cvctx.fill(wmPathScaled);
 
     // Bottom Decorations
+    const by = 370 - ((5 - window.word.length) * 16);
     cvctx.fillStyle = 'rgba(255, 255, 255, 1)';
-    cvctx.fillRect(30, 350, 420, 4);
-    cvctx.fillRect(30, 442, 420, 4);
     cvctx.beginPath();
-    cvctx.ellipse(240, 444, 32, 14, 0, 0, 2 * Math.PI);
+    cvctx.ellipse(400, by - 11, 30, 13, 0, 0, 2 * Math.PI);
     cvctx.fill();
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
-    cvctx.font = 'bold 28px Montserrat';
-    cvctx.fillText('AND I AM FOR LENI.', 240, 385);
+    cvctx.font = 'bold 30px Montserrat';
+    cvctx.textAlign = 'right';
+    cvctx.fillText('AND I AM FOR LENI', 360, by);
+    cvctx.font = '600 18px Montserrat';
+    cvctx.textAlign = 'center';
+    cvctx.fillText('Find your own Gobyernong Tapat name', 240, by + 20);
+    cvctx.font = '600 18px Montserrat';
+    cvctx.fillText('at AngatLahat.com', 240, by + 42);
     cvctx.font = '600 13px Montserrat';
-    cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 240, 403);
+    cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 240, by + 66);
     cvctx.font = 'small-caps expanded 800 18px Montserrat';
-    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, 420);
+    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, by + 85);
     cvctx.fillStyle = 'rgba(231, 38, 146)';
-    cvctx.font = 'bold 24px Montserrat';
-    cvctx.fillText('10', 240, 453);
+    cvctx.font = 'bold 26px Montserrat';
+    cvctx.fillText('10', 400, by - 1);
 
     // First letters (shadow)
     cvctx.font = 'bold 37px Montserrat';
