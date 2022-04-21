@@ -321,41 +321,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
     });
 
+    // Share or copy
     let uaOS = new UAParser().getOS().name;
+    let uaBName = new UAParser().getBrowser().name;
+    const clipBrowsers = ['Chrome', 'Chromium', 'Opera', 'Edge'];
     if(uaOS !== 'Android' && uaOS !== 'iOS') {
-        document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
+        if(clipBrowsers.includes(uaBName)) {
+            document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
+        } else {
+            document.querySelector('#pinkify-share').classList.add('hidden');
+        }
     }
-    document.querySelector('#pinkify-share').addEventListener('click', (event) => {
+    document.querySelector('#pinkify-share').addEventListener('click', async (event) => {
         const canvas = document.querySelector('#pinkify-result-stage');
         const dataUrl = canvas.toDataURL();
-        fetch(dataUrl).then((response) => {
-            response.blob().then((blob) => {
-                if(uaOS === 'Android' || uaOS === 'iOS') {
-                    const shareData = {
-                        title: 'Platapormang Tapat',
-                        text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
-                        files: [
-                            new File([blob], 'AngatLahat.png', {
-                                type: blob.type,
-                                lastModified: new Date().getTime
-                            })
-                        ]
-                    };
-                    try {
-                        navigator.share(shareData);
-                    } catch (err) {
-                        console.log(err);
-                    }
-                } else {
-                    const clipItem = new ClipboardItem({ "image/png": blob });
-                    navigator.clipboard.write([clipItem]);
-                    document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard-check"></use></svg> Copied!';
-                    setTimeout(() => {
-                        document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
-                    }, 1500);
-                }
-            });
-        });
+        const canvasFetch = await fetch(dataUrl);
+        const canvasToBlob = await canvasFetch.blob();    
+        
+        if(uaOS === 'Android' || uaOS === 'iOS') {
+            const shareData = {
+                title: 'Platapormang Tapat',
+                text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
+                files: [
+                    new File([blob], 'AngatLahat.png', {
+                        type: blob.type,
+                        lastModified: new Date().getTime
+                    })
+                ]
+            };
+            try {
+                navigator.share(shareData);
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            const clipItem = new ClipboardItem({ "image/png": canvasToBlob });
+            navigator.clipboard.write([clipItem]);
+            document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard-check"></use></svg> Copied!';
+            setTimeout(() => {
+                document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
+            }, 1500);
+        }
         event.preventDefault();
     });
 
