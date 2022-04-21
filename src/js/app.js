@@ -2,6 +2,8 @@
  * @author JP Loh <hello@jploh.com>
  */
 
+import UAParser from 'ua-parser-js';'ua-parser-js';
+import canvasToImage from 'canvas-to-image';
 import { brightness } from 'tailwindcss/defaultTheme';
 
 var plataporma = {};
@@ -319,28 +321,52 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
     });
 
+    let uaOS = new UAParser().getOS().name;
+    if(uaOS !== 'Android' && uaOS !== 'iOS') {
+        document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
+    }
     document.querySelector('#pinkify-share').addEventListener('click', (event) => {
         const canvas = document.querySelector('#pinkify-result-stage');
         const dataUrl = canvas.toDataURL();
         fetch(dataUrl).then((response) => {
             response.blob().then((blob) => {
-                const shareData = {
-                    title: 'Platapormang Tapat',
-                    text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
-                    files: [
-                        new File([blob], 'angatlahat.png', {
-                            type: blob.type,
-                            lastModified: new Date().getTime
-                        })
-                    ]
-                };
-                try {
-                    navigator.share(shareData);
-                } catch (err) {
-                    console.log(err);
+                if(uaOS === 'Android' || uaOS === 'iOS') {
+                    const shareData = {
+                        title: 'Platapormang Tapat',
+                        text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
+                        files: [
+                            new File([blob], 'AngatLahat.png', {
+                                type: blob.type,
+                                lastModified: new Date().getTime
+                            })
+                        ]
+                    };
+                    try {
+                        navigator.share(shareData);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                } else {
+                    const clipItem = new ClipboardItem({ "image/png": blob });
+                    navigator.clipboard.write([clipItem]);
+                    document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard-check"></use></svg> Copied!';
+                    setTimeout(() => {
+                        document.querySelector('#pinkify-share').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><use xlink:href="#clipboard"></use></svg> Copy';
+                    }, 1500);
                 }
             });
         });
+        event.preventDefault();
+    });
+
+    document.querySelector('#pinkify-dl').addEventListener('click', (event) => {
+        const canvas = document.querySelector('#pinkify-result-stage');
+        canvasToImage(canvas, {
+            name: 'AngatLahat',
+            type: 'png',
+            quality: 1
+        });
+        event.preventDefault();
     });
 
     document.querySelector('#pinkify-reset').addEventListener('click', (event) => {
