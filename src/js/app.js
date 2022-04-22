@@ -81,13 +81,13 @@ const imgRender = () => {
     document.querySelector('#pinkify-result').classList.remove('hidden');
     shufflePlataporma();
 
-    const l1x = 100; // First line X
-    const l1y = 105 + ((5 - window.word.length) * 23); // First line Y
-    const l1fb = 2; // First letter baseline offset
-    const l1s = 2; // First letter shadow distance
-    const l1p = 18; // First letter right padding
-    const l1py = 5; // First letter baseline
-    const l1l = 53; // Line spacing (including line height)
+    const l1x = 200; // First line X
+    const l1y = 210 + ((5 - window.word.length) * 46); // First line Y
+    const l1fb = 4; // First letter baseline offset
+    const l1s = 4; // First letter shadow distance
+    const l1p = 36; // First letter right padding
+    const l1py = 10; // First letter baseline
+    const l1l = 106; // Line spacing (including line height)
     const l2y = l1y + l1l; // Line 2 Y
     const l3y = l2y + l1l; // Line 3 Y
     const l4y = l3y + l1l; // Line 4 Y
@@ -119,46 +119,46 @@ const imgRender = () => {
     let cvctx = canvas.getContext('2d');
 
     // Main background
-    let bg = cvctx.createLinearGradient(240, 0, 240, 480);
+    let bg = cvctx.createLinearGradient(480, 0, 480, 960);
     bg.addColorStop(0, '#f67d98');
     bg.addColorStop(1, '#bf2077');
     cvctx.fillStyle = bg;
-    cvctx.fillRect(0, 0, 480, 480);
+    cvctx.fillRect(0, 0, 960, 960);
 
     // Border
     cvctx.fillStyle = 'rgba(181, 215, 172)';
-    cvctx.fillRect(0, 20, 7, 460);
-    cvctx.fillRect(7, 473, 453, 7);
+    cvctx.fillRect(0, 40, 14, 920);
+    cvctx.fillRect(14, 946, 906, 14);
     cvctx.fillStyle = 'rgba(255, 140, 157)';
-    cvctx.fillRect(0, 0, 7, 17);
-    cvctx.fillRect(7, 0, 473, 7);
-    cvctx.fillRect(473, 7, 7, 473);
-    cvctx.fillRect(463, 473, 17, 7);
+    cvctx.fillRect(0, 0, 14, 34);
+    cvctx.fillRect(14, 0, 946, 14);
+    cvctx.fillRect(946, 14, 14, 946);
+    cvctx.fillRect(926, 946, 34, 14);
     // Inner Border
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
-    cvctx.fillRect(7, 7, 3, 466);
-    cvctx.fillRect(10, 7, 460, 3);
-    cvctx.fillRect(0, 17, 7, 3);
-    cvctx.fillRect(470, 7, 3, 466);
-    cvctx.fillRect(10, 470, 460, 3);
-    cvctx.fillRect(460, 473, 3, 7);
+    cvctx.fillRect(14, 14, 6, 932);
+    cvctx.fillRect(20, 14, 920, 6);
+    cvctx.fillRect(0, 34, 14, 6);
+    cvctx.fillRect(940, 14, 6, 932);
+    cvctx.fillRect(20, 940, 920, 6);
+    cvctx.fillRect(920, 946, 6, 14);
 
     // Header BG
     cvctx.fillStyle = 'rgba(88, 163, 113, 1)';
-    cvctx.fillRect(10, 10, 460, 51);
+    cvctx.fillRect(20, 20, 920, 102);
     cvctx.fillStyle = 'rgba(164, 227, 147, 1)';
-    cvctx.fillRect(10, 58, 460, 4);
+    cvctx.fillRect(20, 116, 920, 8);
 
     // Header Text
-    cvctx.font = 'bold 23px Montserrat';
+    cvctx.font = 'bold 46px Montserrat';
     cvctx.fillStyle = 'rgba(164, 227,147, 1)';
     cvctx.textAlign = 'center';
-    cvctx.fillText('MY NAME IS...', 240, 45);
+    cvctx.fillText('MY NAME IS...', 480, 90);
 
     // Watermark
     const m = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix()
     const wmPathScaled = new Path2D();
-    const wmTransform = m.scale(1.15);
+    const wmTransform = m.scale(2.3);
     const wmTranslate = wmTransform.translate(40, 0);
     const wmPath = new Path2D('M294.41,163.21c.93-11.67-.69-22.92-6.18-33.33-1'
         + '1.79-22.36-29.92-35.88-55.4-38.47a57.21,57.21,0,0,0-21.92,1.67,82.7'
@@ -211,37 +211,37 @@ const imgRender = () => {
         + '73-10.63,29.89-9.91,11,.71,20.67,4.92,29.36,11.51C258.3,116.72,280.'
         + '14,132.4,279,156.44Z');
     wmPathScaled.addPath(wmPath, wmTranslate);
-    let wmBg = cvctx.createLinearGradient(240, 0, 240, 480);
+    let wmBg = cvctx.createLinearGradient(480, 0, 480, 960);
     wmBg.addColorStop(0, '#f17495');
     wmBg.addColorStop(1, '#d44384');
     cvctx.fillStyle = wmBg;
     cvctx.fill(wmPathScaled);
 
     // Bottom Decorations
-    const by = 370 - ((5 - window.word.length) * 16);
+    const by = 740 - ((5 - window.word.length) * 32);
     cvctx.fillStyle = 'rgba(255, 255, 255, 1)';
     cvctx.beginPath();
-    cvctx.ellipse(400, by - 11, 30, 13, 0, 0, 2 * Math.PI);
+    cvctx.ellipse(800, by - 22, 60, 26, 0, 0, 2 * Math.PI);
     cvctx.fill();
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
-    cvctx.font = 'bold 30px Montserrat';
+    cvctx.font = 'bold 60px Montserrat';
     cvctx.textAlign = 'right';
-    cvctx.fillText('AND I AM FOR LENI', 360, by);
-    cvctx.font = '600 18px Montserrat';
+    cvctx.fillText('AND I AM FOR LENI', 720, by);
+    cvctx.font = '600 33px Montserrat';
     cvctx.textAlign = 'center';
-    cvctx.fillText('Find your own Gobyernong Tapat name', 240, by + 20);
-    cvctx.font = '600 18px Montserrat';
-    cvctx.fillText('at AngatLahat.com', 240, by + 42);
-    cvctx.font = '600 13px Montserrat';
-    cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 240, by + 66);
-    cvctx.font = 'small-caps expanded 800 18px Montserrat';
-    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 240, by + 85);
+    cvctx.fillText('Find your own Gobyernong Tapat name', 480, by + 40);
+    cvctx.font = '600 33px Montserrat';
+    cvctx.fillText('at AngatLahat.com', 480, by + 84);
+    cvctx.font = '600 26px Montserrat';
+    cvctx.fillText('MGA NAGAWA, GINAGAWA AT GAGAWIN SA LENIROBREDO.COM', 480, by + 132);
+    cvctx.font = 'small-caps expanded 800 36px Montserrat';
+    cvctx.fillText('#GobyernongTapatAngatBuhayLahat', 480, by + 170);
     cvctx.fillStyle = 'rgba(231, 38, 146)';
-    cvctx.font = 'bold 26px Montserrat';
-    cvctx.fillText('10', 400, by - 1);
+    cvctx.font = 'bold 52px Montserrat';
+    cvctx.fillText('10', 800, by - 1);
 
     // First letters (shadow)
-    cvctx.font = 'bold 37px Montserrat';
+    cvctx.font = 'bold 74px Montserrat';
     cvctx.fillStyle = 'rgba(191, 43, 94, 1)';
     cvctx.textAlign = 'center';
     cvctx.fillText(nl1, l1x - l1p - l1s, l1y + l1py + l1s);
@@ -251,7 +251,7 @@ const imgRender = () => {
     cvctx.fillText(nl5, l1x - l1p - l1s, l5y + l1py + l1s);
 
     // First letters
-    cvctx.font = 'bold 37px Montserrat';
+    cvctx.font = 'bold 74px Montserrat';
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
     cvctx.textAlign = 'center';
     cvctx.fillText(nl1, l1x - l1p, l1y + l1py);
@@ -261,7 +261,7 @@ const imgRender = () => {
     cvctx.fillText(nl5, l1x - l1p, l5y + l1py);
 
     // Rest of Plataporma text 
-    cvctx.font = 'small-caps italic 600 23px Montserrat';
+    cvctx.font = 'small-caps italic 600 46px Montserrat';
     cvctx.fillStyle = 'rgba(255, 228, 243, 1)';
     cvctx.textAlign = 'left';
     cvctx.fillText(m1, l1x, l1y);
