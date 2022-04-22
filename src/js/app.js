@@ -353,8 +353,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 title: 'Platapormang Tapat',
                 text: 'Pangalan ko ang resibo ng leader na si #LeniRobredo. Para sa #GobyernongTapat #AngatBuhayLahat. Siya lang ang may track record na maraming napatunayan at mapapatunayan pa. Tara na, ipanalo na natin ‘to #KulayRosasAngBukas #LeniKiko2022',
                 files: [
-                    new File([blob], 'AngatLahat.png', {
-                        type: blob.type,
+                    new File([canvasToBlob], 'AngatLahat.png', {
+                        type: canvasToBlob.type,
                         lastModified: new Date().getTime
                     })
                 ]
