@@ -11,7 +11,7 @@ var bannedWords;
 window.word = '';
 window.safetyCheckFailedTO = false;
 
-var nameRedraw = () => {
+const nameRedraw = () => {
     for(let i = 0; i < 5; i++) {
         let letterDiv = document.querySelector('#nl-' + i);
         if(i <= window.word.length) {
@@ -27,7 +27,16 @@ var nameRedraw = () => {
     }
 };
 
-var safetyCheckFailed = () => {
+const shufflePlataporma = () => {
+    const pKeys = Object.keys(plataporma);
+    pKeys.forEach((p) => {
+        plataporma[p] = plataporma[p].map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+    });
+};
+
+const safetyCheckFailed = () => {
     const submit = document.querySelector('#pinkify-submit');
     submit.innerHTML = 'Try again.'
     const buzzGroup = document.querySelectorAll('#pinkify-submit, #nl-0, #nl-1, #nl-2, #nl-3, #nl-4');
@@ -56,7 +65,7 @@ var safetyCheckFailed = () => {
     }, 1500);
 };
 
-var imgRender = () => {
+const imgRender = () => {
     if(window.word.length === 0) {
         return true;
     }
@@ -70,6 +79,7 @@ var imgRender = () => {
     document.querySelector('#pinkify-form').classList.add('hidden');
     document.querySelector('#pinkify-kb').classList.add('hidden');
     document.querySelector('#pinkify-result').classList.remove('hidden');
+    shufflePlataporma();
 
     const l1x = 100; // First line X
     const l1y = 105 + ((5 - window.word.length) * 23); // First line Y
